@@ -72,7 +72,27 @@ router.get('/findinvoice', async (req, res) => {
 
 })
 
-// total number of invoices created between selected date
+// View Created invoices
+
+router.get('/createdinvoices', async (req, res) => {
+    try {
+        let client = await MongoClient.connect(dbUrl);
+        let db = client.db("LearnQ-Invoice");
+        let data = await db.collection("invoice").find().toArray();
+        if (data) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json({ message: "No Data Found" })
+        }
+        client.close();
+    } catch (error) {
+        console.log(error)
+        res.status(500)
+    }
+
+})
+
+// invoices created between selected date
 
 router.get('/createdbetween', async(req,res)=>{
     try {
