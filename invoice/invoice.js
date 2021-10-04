@@ -72,7 +72,7 @@ router.get('/findinvoice', async (req, res) => {
 
 })
 
-// // total number of urls created between selected date
+// total number of invoices created between selected date
 
 router.get('/createdbetween', async(req,res)=>{
     try {
